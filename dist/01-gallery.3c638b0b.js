@@ -585,10 +585,49 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 
 },{}],"9de4I":[function(require,module,exports) {
 var _galleryItemsJs = require("./gallery-items.js");
+var _basiclightbox = require("basiclightbox");
+var _basicLightboxMinCss = require("basiclightbox/dist/basicLightbox.min.css");
 // Change code below this line
-console.log((0, _galleryItemsJs.galleryItems));
+const galleryList = document.querySelector(".gallery");
+function createGalleryItem(item) {
+    const listItem = document.createElement("li");
+    listItem.classList.add("gallery__item");
+    const link = document.createElement("a");
+    link.classList.add("gallery__link");
+    link.href = item.original;
+    const image = document.createElement("img");
+    image.classList.add("gallery__image");
+    image.src = item.preview;
+    image.alt = item.description;
+    image.setAttribute("data-source", item.original);
+    link.appendChild(image);
+    listItem.appendChild(link);
+    return listItem;
+}
+(0, _galleryItemsJs.galleryItems).forEach((item)=>{
+    const galleryItem = createGalleryItem(item);
+    galleryList.appendChild(galleryItem);
+});
+galleryList.addEventListener("click", (event)=>{
+    event.preventDefault();
+    if (event.target.nodeName !== "IMG") return;
+    const imageURL = event.target.dataset.source;
+    const altText = event.target.alt;
+    const modal = _basiclightbox.create(`
+    <img src="${imageURL}" alt="${altText}" />
+  `);
+    modal.show();
+    // Zamknięcie okna modalnego po naciśnięciu klawisza Escape
+    const handleKeyPress = (event)=>{
+        if (event.code === "Escape") {
+            modal.close();
+            window.removeEventListener("keydown", handleKeyPress);
+        }
+    };
+    window.addEventListener("keydown", handleKeyPress);
+});
 
-},{"./gallery-items.js":"e9dXm"}],"e9dXm":[function(require,module,exports) {
+},{"./gallery-items.js":"e9dXm","basiclightbox":"h9e8q","basiclightbox/dist/basicLightbox.min.css":"lf3c2"}],"e9dXm":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "galleryItems", ()=>galleryItems);
@@ -670,6 +709,111 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}]},["2xJn7","9de4I"], "9de4I", "parcelRequirec4de")
+},{}],"h9e8q":[function(require,module,exports) {
+!function(e) {
+    module.exports = e();
+}(function() {
+    return (function e(n, t, o) {
+        function r(c, u) {
+            if (!t[c]) {
+                if (!n[c]) {
+                    var s = undefined;
+                    if (!u && s) return s(c, !0);
+                    if (i) return i(c, !0);
+                    var a = new Error("Cannot find module '" + c + "'");
+                    throw a.code = "MODULE_NOT_FOUND", a;
+                }
+                var l = t[c] = {
+                    exports: {}
+                };
+                n[c][0].call(l.exports, function(e) {
+                    return r(n[c][1][e] || e);
+                }, l, l.exports, e, n, t, o);
+            }
+            return t[c].exports;
+        }
+        for(var i = undefined, c = 0; c < o.length; c++)r(o[c]);
+        return r;
+    })({
+        1: [
+            function(e, n, t) {
+                "use strict";
+                Object.defineProperty(t, "__esModule", {
+                    value: !0
+                }), t.create = t.visible = void 0;
+                var o = function(e) {
+                    var n = arguments.length > 1 && void 0 !== arguments[1] && arguments[1], t = document.createElement("div");
+                    return t.innerHTML = e.trim(), !0 === n ? t.children : t.firstChild;
+                }, r = function(e, n) {
+                    var t = e.children;
+                    return 1 === t.length && t[0].tagName === n;
+                }, i = function(e) {
+                    return null != (e = e || document.querySelector(".basicLightbox")) && !0 === e.ownerDocument.body.contains(e);
+                };
+                t.visible = i;
+                t.create = function(e, n) {
+                    var t = function(e, n) {
+                        var t = o('\n		<div class="basicLightbox '.concat(n.className, '">\n			<div class="basicLightbox__placeholder" role="dialog"></div>\n		</div>\n	')), i = t.querySelector(".basicLightbox__placeholder");
+                        e.forEach(function(e) {
+                            return i.appendChild(e);
+                        });
+                        var c = r(i, "IMG"), u = r(i, "VIDEO"), s = r(i, "IFRAME");
+                        return !0 === c && t.classList.add("basicLightbox--img"), !0 === u && t.classList.add("basicLightbox--video"), !0 === s && t.classList.add("basicLightbox--iframe"), t;
+                    }(e = function(e) {
+                        var n = "string" == typeof e, t = e instanceof HTMLElement == 1;
+                        if (!1 === n && !1 === t) throw new Error("Content must be a DOM element/node or string");
+                        return !0 === n ? Array.from(o(e, !0)) : "TEMPLATE" === e.tagName ? [
+                            e.content.cloneNode(!0)
+                        ] : Array.from(e.children);
+                    }(e), n = function() {
+                        var e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {};
+                        if (null == (e = Object.assign({}, e)).closable && (e.closable = !0), null == e.className && (e.className = ""), null == e.onShow && (e.onShow = function() {}), null == e.onClose && (e.onClose = function() {}), "boolean" != typeof e.closable) throw new Error("Property `closable` must be a boolean");
+                        if ("string" != typeof e.className) throw new Error("Property `className` must be a string");
+                        if ("function" != typeof e.onShow) throw new Error("Property `onShow` must be a function");
+                        if ("function" != typeof e.onClose) throw new Error("Property `onClose` must be a function");
+                        return e;
+                    }(n)), c = function(e) {
+                        return !1 !== n.onClose(u) && function(e, n) {
+                            return e.classList.remove("basicLightbox--visible"), setTimeout(function() {
+                                return !1 === i(e) || e.parentElement.removeChild(e), n();
+                            }, 410), !0;
+                        }(t, function() {
+                            if ("function" == typeof e) return e(u);
+                        });
+                    };
+                    !0 === n.closable && t.addEventListener("click", function(e) {
+                        e.target === t && c();
+                    });
+                    var u = {
+                        element: function() {
+                            return t;
+                        },
+                        visible: function() {
+                            return i(t);
+                        },
+                        show: function(e) {
+                            return !1 !== n.onShow(u) && function(e, n) {
+                                return document.body.appendChild(e), setTimeout(function() {
+                                    requestAnimationFrame(function() {
+                                        return e.classList.add("basicLightbox--visible"), n();
+                                    });
+                                }, 10), !0;
+                            }(t, function() {
+                                if ("function" == typeof e) return e(u);
+                            });
+                        },
+                        close: c
+                    };
+                    return u;
+                };
+            },
+            {}
+        ]
+    }, {}, [
+        1
+    ])(1);
+});
+
+},{}],"lf3c2":[function() {},{}]},["2xJn7","9de4I"], "9de4I", "parcelRequirec4de")
 
 //# sourceMappingURL=01-gallery.3c638b0b.js.map
