@@ -48,7 +48,7 @@ galleryList.addEventListener('click', event => {
 
   modal.show();
 
-  // Zamknięcie okna modalnego po naciśnięciu klawisza Escape
+
   const handleKeyPress = event => {
     if (event.code === 'Escape') {
       modal.close();
