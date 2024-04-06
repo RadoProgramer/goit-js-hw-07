@@ -1,4 +1,3 @@
-import SimpleLightbox from "simplelightbox";
 import { galleryItems } from "./gallery-items.js";
 
 document.addEventListener("DOMContentLoaded", function () {
