@@ -1,6 +1,6 @@
 5929
 99C:\Users\radzi\OneDrive\Dokumenty\GitHub\goit-js-hw-07\node_modules\caniuse-lite\data\regions\ES.js133567840032435551 0
-71C:\Users\radzi\OneDrive\Dokumenty\GitHub\goit-js-hw-07\02-lightbox.html133568758790127032 0
+71C:\Users\radzi\OneDrive\Dokumenty\GitHub\goit-js-hw-07\02-lightbox.html133568772652482259 0
 145C:\Users\radzi\OneDrive\Dokumenty\GitHub\goit-js-hw-07\node_modules\@parcel\optimizer-htmlnano\node_modules\svgo\plugins\moveGroupAttrsToElems.js133567840021536715 0
 105C:\Users\radzi\OneDrive\Dokumenty\GitHub\goit-js-hw-07\node_modules\svgo\plugins\moveElemsAttrsToGroup.js133567840024045919 0
 104C:\Users\radzi\OneDrive\Dokumenty\GitHub\goit-js-hw-07\node_modules\caniuse-lite\data\features\hidden.js133567840033356274 0
@@ -28,7 +28,7 @@
 133C:\Users\radzi\OneDrive\Dokumenty\GitHub\goit-js-hw-07\node_modules\@swc\helpers\src\_class_check_private_static_field_descriptor.mjs133567840032795443 0
 121C:\Users\radzi\OneDrive\Dokumenty\GitHub\goit-js-hw-07\node_modules\csso\node_modules\css-tree\lib\syntax\node\AnPlusB.js133567840028944930 0
 92C:\Users\radzi\OneDrive\Dokumenty\GitHub\goit-js-hw-07\node_modules\abortcontroller-polyfill133567840017927873 1
-59C:\Users\radzi\OneDrive\Dokumenty\GitHub\goit-js-hw-07\dist133568761360525565 1
+59C:\Users\radzi\OneDrive\Dokumenty\GitHub\goit-js-hw-07\dist133568772652714788 1
 119C:\Users\radzi\OneDrive\Dokumenty\GitHub\goit-js-hw-07\node_modules\@swc\helpers\cjs\_iterable_to_array_limit_loose.cjs133567840023995928 0
 105C:\Users\radzi\OneDrive\Dokumenty\GitHub\goit-js-hw-07\node_modules\simplelightbox\src\simple-lightbox.js133567848786403263 0
 114C:\Users\radzi\OneDrive\Dokumenty\GitHub\goit-js-hw-07\node_modules\caniuse-lite\data\features\childnode-remove.js133567840027785304 0
@@ -5927,4 +5927,4 @@
 85C:\Users\radzi\OneDrive\Dokumenty\GitHub\goit-js-hw-07\dist\goit-js-hw-07.3464ddca.js133568753324342492 0
 83C:\Users\radzi\OneDrive\Dokumenty\GitHub\goit-js-hw-07\dist\01-gallery.748ad148.css133568753324792336 0
 87C:\Users\radzi\OneDrive\Dokumenty\GitHub\goit-js-hw-07\dist\01-gallery.748ad148.css.map133568753324862311 0
-76C:\Users\radzi\OneDrive\Dokumenty\GitHub\goit-js-hw-07\dist\02-lightbox.html133568759042977349 0
+76C:\Users\radzi\OneDrive\Dokumenty\GitHub\goit-js-hw-07\dist\02-lightbox.html133568772652704794 0
