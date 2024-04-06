@@ -585,48 +585,47 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 
 },{}],"9de4I":[function(require,module,exports) {
 var _galleryItemsJs = require("./gallery-items.js");
+// Change code below this line
 var _basiclightbox = require("basiclightbox");
 var _basicLightboxMinCss = require("basiclightbox/dist/basicLightbox.min.css");
-// Change code below this line
-const galleryList = document.querySelector("ul.gallery");
-function createGalleryItem(item) {
-    const listItem = document.createElement("li");
-    listItem.classList.add("gallery__item");
-    const link = document.createElement("a");
-    link.classList.add("gallery__link");
-    link.href = item.original;
-    const image = document.createElement("img");
-    image.classList.add("gallery__image");
-    image.src = item.preview;
-    image.alt = item.description;
-    image.setAttribute("data-source", item.original);
-    link.appendChild(image);
-    listItem.appendChild(link);
-    return listItem;
+document.addEventListener("DOMContentLoaded", function() {
+    const gallery = document.querySelector(".gallery");
+    const galleryMarkup = createGalleryMarkup((0, _galleryItemsJs.galleryItems));
+    gallery.insertAdjacentHTML("beforeend", galleryMarkup);
+    gallery.addEventListener("click", onGalleryItemClick);
+});
+function createGalleryMarkup(items) {
+    return items.map((item)=>`<li class="gallery__item">
+            <a class="gallery__link" href="${item.original}">
+              <img
+                class="gallery__image"
+                src="${item.preview}"
+                data-source="${item.original}"
+                alt="${item.description}"
+              />
+            </a>
+          </li>`).join("");
 }
-(0, _galleryItemsJs.galleryItems).forEach((item)=>{
-    const galleryItem = createGalleryItem(item);
-    galleryList.appendChild(galleryItem);
-});
-galleryList.addEventListener("click", (event)=>{
+function onGalleryItemClick(event) {
     event.preventDefault();
-    if (event.target.nodeName !== "IMG") return;
-    const imageURL = event.target.dataset.source;
-    const altText = event.target.alt;
-    const modal = _basiclightbox.create(`
-    <img src="${imageURL}" alt="${altText}" />
-  `);
-    modal.show();
-    const handleKeyPress = (event)=>{
-        if (event.code === "Escape") {
-            modal.close();
-            window.removeEventListener("keydown", handleKeyPress);
-        }
-    };
-    window.addEventListener("keydown", handleKeyPress);
-});
+    const target = event.target;
+    if (target.classList.contains("gallery__image")) {
+        const imageUrl = target.dataset.source;
+        const instance = _basiclightbox.create(`
+      <img src="${imageUrl}" width="800" height="600">
+    `);
+        instance.show();
+        const closeModalOnEscape = (event)=>{
+            if (event.key === "Escape") {
+                instance.close();
+                window.removeEventListener("keydown", closeModalOnEscape);
+            }
+        };
+        window.addEventListener("keydown", closeModalOnEscape);
+    }
+}
 
-},{"basiclightbox":"h9e8q","basiclightbox/dist/basicLightbox.min.css":"lf3c2","./gallery-items.js":"e9dXm"}],"h9e8q":[function(require,module,exports) {
+},{"basiclightbox":"h9e8q","./gallery-items.js":"e9dXm","basiclightbox/dist/basicLightbox.min.css":"lf3c2"}],"h9e8q":[function(require,module,exports) {
 !function(e) {
     module.exports = e();
 }(function() {
@@ -731,7 +730,7 @@ galleryList.addEventListener("click", (event)=>{
     ])(1);
 });
 
-},{}],"lf3c2":[function() {},{}],"e9dXm":[function(require,module,exports) {
+},{}],"e9dXm":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "galleryItems", ()=>galleryItems);
@@ -813,6 +812,6 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}]},["2xJn7","9de4I"], "9de4I", "parcelRequirec4de")
+},{}],"lf3c2":[function() {},{}]},["2xJn7","9de4I"], "9de4I", "parcelRequirec4de")
 
 //# sourceMappingURL=01-gallery.3c638b0b.js.map

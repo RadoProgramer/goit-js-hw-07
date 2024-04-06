@@ -1,22 +1,28 @@
 import SimpleLightbox from "simplelightbox";
 import { galleryItems } from "./gallery-items.js";
-import "simplelightbox/dist/simple-lightbox.css"
-// Change code below this line
-const gallery = document.querySelector("ul.gallery");
-for (const item of galleryItems) {
-	const html = `<li class="gallery__item">
-    <a class="gallery__link" href="${item.original}">
-      <img
-        class="gallery__image"
-        src="${item.preview}"
-        data-source="${item.original}"
-        alt="${item.description}"
-      />
-    </a>
-  </li>`;
-  gallery.insertAdjacentHTML("beforeend", html);
-}
 
-const lightbox = new SimpleLightbox(".gallery a");
+document.addEventListener("DOMContentLoaded", function () {
+  const gallery = document.querySelector(".gallery");
+  
 
-console.log(galleryItems);
+  galleryItems.forEach(item => {
+    const galleryItem = document.createElement("a");
+    galleryItem.classList.add("gallery__item");
+    galleryItem.href = item.original;
+
+    const image = document.createElement("img");
+    image.classList.add("gallery__image");
+    image.src = item.preview;
+    image.alt = item.description;
+
+    galleryItem.appendChild(image);
+    gallery.appendChild(galleryItem);
+  });
+
+ 
+  const lightbox = new SimpleLightbox('.gallery a', {
+    captionsData: "alt",
+    captionDelay: 250,
+    alertErrorMessage: "Nie można załadować obrazka.",
+  });
+});

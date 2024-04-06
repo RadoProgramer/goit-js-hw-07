@@ -1,58 +1,63 @@
 import { galleryItems } from "./gallery-items.js";
 // Change code below this line
 
-const galleryList = document.querySelector("ul.gallery");
+import * as basicLightbox from 'basiclightbox';
+import 'basiclightbox/dist/basicLightbox.min.css';
 
-function createGalleryItem(item) {
-	const listItem = document.createElement("li");
-	listItem.classList.add("gallery__item");
 
-	const link = document.createElement("a");
-	link.classList.add("gallery__link");
-	link.href = item.original;
+document.addEventListener('DOMContentLoaded', function () {
+  const gallery = document.querySelector('.gallery');
 
-	const image = document.createElement("img");
-	image.classList.add("gallery__image");
-	image.src = item.preview;
-	image.alt = item.description;
-	image.setAttribute("data-source", item.original);
+  
+  const galleryMarkup = createGalleryMarkup(galleryItems);
+  gallery.insertAdjacentHTML('beforeend', galleryMarkup);
 
-	link.appendChild(image);
-	listItem.appendChild(link);
 
-	return listItem;
+  gallery.addEventListener('click', onGalleryItemClick);
+});
+
+
+function createGalleryMarkup(items) {
+  return items
+    .map(
+      item =>
+        `<li class="gallery__item">
+            <a class="gallery__link" href="${item.original}">
+              <img
+                class="gallery__image"
+                src="${item.preview}"
+                data-source="${item.original}"
+                alt="${item.description}"
+              />
+            </a>
+          </li>`
+    )
+    .join('');
 }
 
-galleryItems.forEach((item) => {
-	const galleryItem = createGalleryItem(item);
-	galleryList.appendChild(galleryItem);
-});
 
-import * as basicLightbox from "basiclightbox";
-import "basiclightbox/dist/basicLightbox.min.css";
+function onGalleryItemClick(event) {
+  event.preventDefault();
 
-galleryList.addEventListener("click", (event) => {
-	event.preventDefault();
+  const target = event.target;
 
-	if (event.target.nodeName !== "IMG") {
-		return;
-	}
 
-	const imageURL = event.target.dataset.source;
-	const altText = event.target.alt;
+  if (target.classList.contains('gallery__image')) {
+    const imageUrl = target.dataset.source;
 
-	const modal = basicLightbox.create(`
-    <img src="${imageURL}" alt="${altText}" />
-  `);
+    const instance = basicLightbox.create(`
+      <img src="${imageUrl}" width="800" height="600">
+    `);
+    instance.show();
 
-	modal.show();
+  
+    const closeModalOnEscape = event => {
+      if (event.key === 'Escape') {
+        instance.close();
+        window.removeEventListener('keydown', closeModalOnEscape);
+      }
+    };
 
-	const handleKeyPress = (event) => {
-		if (event.code === "Escape") {
-			modal.close();
-			window.removeEventListener("keydown", handleKeyPress);
-		}
-	};
-
-	window.addEventListener("keydown", handleKeyPress);
-});
+    window.addEventListener('keydown', closeModalOnEscape);
+  }
+}

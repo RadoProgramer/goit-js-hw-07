@@ -588,26 +588,27 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _simplelightbox = require("simplelightbox");
 var _simplelightboxDefault = parcelHelpers.interopDefault(_simplelightbox);
 var _galleryItemsJs = require("./gallery-items.js");
-var _simpleLightboxCss = require("simplelightbox/dist/simple-lightbox.css");
-// Change code below this line
-const gallery = document.querySelector("ul.gallery");
-for (const item of (0, _galleryItemsJs.galleryItems)){
-    const html = `<li class="gallery__item">
-    <a class="gallery__link" href="${item.original}">
-      <img
-        class="gallery__image"
-        src="${item.preview}"
-        data-source="${item.original}"
-        alt="${item.description}"
-      />
-    </a>
-  </li>`;
-    gallery.insertAdjacentHTML("beforeend", html);
-}
-const lightbox = new (0, _simplelightboxDefault.default)(".gallery a");
-console.log((0, _galleryItemsJs.galleryItems));
+document.addEventListener("DOMContentLoaded", function() {
+    const gallery = document.querySelector(".gallery");
+    (0, _galleryItemsJs.galleryItems).forEach((item)=>{
+        const galleryItem = document.createElement("a");
+        galleryItem.classList.add("gallery__item");
+        galleryItem.href = item.original;
+        const image = document.createElement("img");
+        image.classList.add("gallery__image");
+        image.src = item.preview;
+        image.alt = item.description;
+        galleryItem.appendChild(image);
+        gallery.appendChild(galleryItem);
+    });
+    const lightbox = new (0, _simplelightboxDefault.default)(".gallery a", {
+        captionsData: "alt",
+        captionDelay: 250,
+        alertErrorMessage: "Nie mo\u017Cna za\u0142adowa\u0107 obrazka."
+    });
+});
 
-},{"./gallery-items.js":"e9dXm","simplelightbox":"9ydBq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","simplelightbox/dist/simple-lightbox.css":"dAm0f"}],"e9dXm":[function(require,module,exports) {
+},{"./gallery-items.js":"e9dXm","simplelightbox":"9ydBq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"e9dXm":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "galleryItems", ()=>galleryItems);
@@ -2201,6 +2202,6 @@ var _default = SimpleLightbox;
 exports["default"] = _default;
 global.SimpleLightbox = SimpleLightbox;
 
-},{}],"dAm0f":[function() {},{}]},["a2E5W","guLSJ"], "guLSJ", "parcelRequirec4de")
+},{}]},["a2E5W","guLSJ"], "guLSJ", "parcelRequirec4de")
 
 //# sourceMappingURL=02-lightbox.88505b8b.js.map
