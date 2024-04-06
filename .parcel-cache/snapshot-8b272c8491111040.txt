@@ -9,7 +9,7 @@
 65C:\Users\radzi\OneDrive\Dokumenty\GitHub\goit-js-hw-07\index.html133552302810000000 0
 119C:\Users\radzi\OneDrive\Dokumenty\GitHub\goit-js-hw-07\node_modules\csso\node_modules\css-tree\cjs\syntax\node\Hash.cjs133567840023106210 0
 75C:\Users\radzi\OneDrive\Dokumenty\GitHub\goit-js-hw-07\node_modules\@parcel133567876809170686 1
-70C:\Users\radzi\OneDrive\Dokumenty\GitHub\goit-js-hw-07\01-gallery.html133552302810000000 0
+70C:\Users\radzi\OneDrive\Dokumenty\GitHub\goit-js-hw-07\01-gallery.html133568625632850920 0
 128C:\Users\radzi\OneDrive\Dokumenty\GitHub\goit-js-hw-07\node_modules\htmlnano\docs\versioned_sidebars\version-1.1.1-sidebars.json133567840023396122 0
 105C:\Users\radzi\OneDrive\Dokumenty\GitHub\goit-js-hw-07\node_modules\@swc\helpers\cjs\_read_only_error.cjs133567840025655984 0
 57C:\Users\radzi\OneDrive\Dokumenty\GitHub\goit-js-hw-07\js133567830713105367 1
