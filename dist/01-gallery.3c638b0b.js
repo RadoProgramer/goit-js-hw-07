@@ -588,7 +588,7 @@ var _galleryItemsJs = require("./gallery-items.js");
 var _basiclightbox = require("basiclightbox");
 var _basicLightboxMinCss = require("basiclightbox/dist/basicLightbox.min.css");
 // Change code below this line
-const galleryList = document.querySelector(".gallery");
+const galleryList = document.querySelector("ul.gallery");
 function createGalleryItem(item) {
     const listItem = document.createElement("li");
     listItem.classList.add("gallery__item");

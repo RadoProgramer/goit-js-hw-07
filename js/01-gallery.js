@@ -1,7 +1,7 @@
 import { galleryItems } from "./gallery-items.js";
 // Change code below this line
 
-const galleryList = document.querySelector(".gallery");
+const galleryList = document.querySelector("ul.gallery");
 
 function createGalleryItem(item) {
 	const listItem = document.createElement("li");
