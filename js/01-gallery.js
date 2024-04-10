@@ -59,3 +59,4 @@ function onGalleryItemClick(event) {
     window.addEventListener('keydown', closeModalOnEscape);
   }
 }
+

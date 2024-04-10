@@ -25,3 +25,4 @@ document.addEventListener("DOMContentLoaded", function () {
     alertErrorMessage: "Nie można załadować obrazka.",
   });
 });
+
